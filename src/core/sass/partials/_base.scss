@@ -19,6 +19,7 @@ html {
     font-family: $base-font-family;
     line-height: $base-line-height;
     overflow: hidden;
+    overflow-x: visible;
     scroll-behavior: unset;
 
     &.mac.html--scroll,

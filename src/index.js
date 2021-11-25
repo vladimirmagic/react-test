@@ -5,7 +5,7 @@ import Board from "./board/Board";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Board listNumber={3} cardNumber={5}/>
+    <Board listNumber={50} cardNumber={10}/>
   </React.StrictMode>,
   document.getElementById('main-panel')
 );
