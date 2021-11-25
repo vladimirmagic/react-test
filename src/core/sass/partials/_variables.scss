@@ -82,3 +82,12 @@ $media-screens: (
 $shadow-default: 0 $google-spacing / 4  $google-spacing rgba($color-base, .2);
 $shadow-hover: 0 $google-spacing / 2  $google-spacing * 2 rgba($color-base, .3);
 $shadow-modal: 0 $google-spacing $google-spacing * 3 rgba($color-base, .4);
+
+// from knb
+$aside-max: $google-spacing * 80; // 640px
+$card-width: $google-spacing * 34.5; // 276px
+
+$z-aside: $z-fold * 2;
+$z-content: $z-fold + 5;
+
+$topbar-height: $google-spacing * 7;
