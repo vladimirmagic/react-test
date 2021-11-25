@@ -11,6 +11,7 @@ function List({cardNumber}) {
   }
 
   return (
+    <div className="list-container">
       <section className="list-component">
         <header className="list-header"><span className="list-header__name" tabIndex="0" role="button"
                                               aria-describedby="rbd-hidden-text-0-hidden-text-0"
@@ -70,11 +71,12 @@ function List({cardNumber}) {
           </div>
         </header>
         <div className="list-cards" data-id="5218064539582464">
-
+          <div className="list-cards__scroll">
               {getCards()}
-
+          </div>
         </div>
       </section>
+    </div>
   );
 }
 

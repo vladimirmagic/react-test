@@ -11,9 +11,7 @@ function Lists({listNumber, cardNumber}) {
     }
   return (
       <div className="lists-container" >
-        <div className="list-container">
             {getLists()}
-        </div>
       </div>
   );
 }
