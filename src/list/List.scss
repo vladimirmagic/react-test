@@ -1,0 +1,75 @@
+@import '../core/sass';
+
+$listWidth: $google-spacing * 39.5; // 316 px
+$stripColor: calc-color(fade, $color-base, 10);
+
+.list-component {
+  position: relative;
+  flex: 0 0 $listWidth;
+  width: $listWidth;
+  margin-right: $google-spacing;
+  height: calc(100% - 4px); // отступ перед скролом
+  @include transition(background, .2s);
+  border-radius: $base-radius;
+
+  .page--lists-bg & {
+    background: calc-color(fade, $color-white, 20);
+  }
+
+  .page--lists-bg.page--theme-decorated.page--classic & {
+    background: calc-color(fade, $color-white, 10);
+
+    &--active,
+    &--hovered,
+    &.list-component--drag-over {
+      background: calc-color(fade, $color-white, 20);
+    }
+  }
+
+  .page &--active,
+  .page &--hovered,
+  .page &.list-component--drag-over {
+    background: calc-color(fade, $color-white, 40);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.list-component--folded {
+    position: relative;
+    flex-basis: $google-spacing * 7.5;
+    width: $google-spacing * 7.5;
+  }
+}
+
+@keyframes list-animation {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: $google-spacing * 4 $google-spacing * 2
+  }
+}
+
+.list-component__saving {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  @include transition;
+  pointer-events: auto;
+  cursor: progress;
+  background-size: $google-spacing*2 $google-spacing*2;
+  background-image: linear-gradient(45deg,
+          $stripColor 25%,
+          transparent 25%,
+          transparent 50%,
+          $stripColor 50%,
+          $stripColor 75%,
+          transparent 75%,
+          transparent
+  );
+  animation: list-animation 0.4s linear infinite;
+}

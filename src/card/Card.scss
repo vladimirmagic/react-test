@@ -1,0 +1,242 @@
+@import '../core/sass';
+
+$card-width: $google-spacing * 34.5;
+$stripColor: calc-color(fade, $color-base, 5);
+
+.k-card__container {
+    position: relative;
+    width: $card-width !important;
+    padding-left: $google-spacing * 2;
+
+&.k-card__container--dragging {
+.k-card {
+    border-color: calc-color(fade, $color-base, 0) !important; // hide collaborators
+box-shadow: $shadow-hover; // hide selected
+}
+
+.k-card__state { // hide collaborators
+opacity: 0;
+    pointer-events: none;
+}
+}
+&.k-card__container--multiple-dragging {
+&.k-card__container--more-two-items:before,
+&:after {
+     position: absolute;
+     display: block;
+     width: 100%;
+     height: $google-spacing * 3;
+     bottom: -$google-spacing * 0.5;
+     content: ' ';
+     background: $color-white;
+     border: 1px solid calc-color(fade, $color-base, 15);
+     border-radius: 0 0 $base-radius $base-radius;
+     z-index: -1;
+     box-shadow: $shadow-hover;
+ }
+&.k-card__container--more-two-items:before {
+     bottom: -$google-spacing * 2;
+ }
+}
+}
+
+.k-card__container__cards-count {
+    position: absolute;
+    top: -$google-spacing;
+    left: $google-spacing * 0.75;
+    min-width: $google-spacing * 2.75;
+    padding: 0 ($google-spacing / 2);
+    font-size: $nano-size;
+    line-height: $google-spacing * 2.75;
+    text-align: center;
+    background: $color-red;
+    color: $color-white;
+    border-radius: $google-spacing * 2;
+    z-index: $z-fold;
+}
+
+.k-card {
+    position: relative;
+    width: $card-width;
+    border-radius: $base-radius;
+    background: $color-white;
+    border: 2px solid transparent;
+
+&.k-card--selected {
+     border-color: $color-purple;
+     box-shadow: -$google-spacing 0 0 $color-purple;
+ }
+
+&.k-card--w-collaborators {
+     border-color: $color-purple;
+     padding-bottom: $google-spacing;
+ }
+
+&:hover {
+     box-shadow: $shadow-default;
+ }
+
+&:focus-within {
+     border-color: calc-color(tint, $color-base, 60) !important;
+ }
+
+&.k-card--multiple-dragging {
+     opacity: 0.5;
+ }
+}
+
+@each $name, $item in $colors {
+    $color: map-get($item, 'color');
+    $text: get-text-color($item);
+    $stripColor: calc-color(fade, $text, 5);
+
+.k-card--bgcolor-#{to_upper_case(str-slice(#{$color}, 2))} {
+    color: $text;
+    background-color: $color;
+
+code {
+    background-color: $text;
+    color: $color;
+}
+
+.k-card__drive-docs__file {
+    border-color: calc-color(fade, $text, 20);
+}
+
+.k-card__actions .kui-icon,
+.k-card__c-number,
+.k-card__count-icon,
+.k-card__drive-docs__file_link,
+.k-card__drive-docs__file_download,
+.k-card__drive-docs__file_icon {
+    color: $text;
+}
+
+&.k-card--loading .k-card__state {
+     background-image: linear-gradient(-45deg,
+     $stripColor 25%,
+     transparent 25%,
+     transparent 50%,
+     $stripColor 50%,
+     $stripColor 75%,
+     transparent 75%,
+     transparent
+     );
+ }
+}
+}
+
+.k-card__title-inner {
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    word-break: break-word;
+    white-space: pre-wrap;
+    line-height: 1.3;
+}
+
+.k-card__modules {
+    padding: $google-spacing * .75;
+    cursor: pointer; // применяем тут, что бы перебить курсор из RBD который применряется к dragHandleProps элементу
+}
+
+.k-card__dates {
+    white-space: nowrap;
+    height: $google-spacing * 3;
+
+&.k-card__dates--all {
+.kui-icon {
+    display: none;
+}
+}
+}
+
+.k-card__module {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    min-height: $google-spacing * 3;
+
+&:first-child {
+     width: calc(100% - #{$google-spacing * 4});
+ }
+
+& + & {
+      margin-top: $google-spacing;
+  }
+
+&.k-card__module--color-tags {
+     min-height: $google-spacing * 2.5;
+
+.color-tags--5plus {
+.color-tags__item {
+    text-indent: 100vw;
+
+&:hover {
+     flex-grow: 1;
+ }
+}
+}
+}
+
+&.k-card__module--tags {
+     min-height: $google-spacing * 2;
+ }
+
+&.k-card__module--counters {
+     min-height: $google-spacing * 2;
+ }
+
+&.k-card__module--tags + &.k-card__module--counters {
+     margin-top: $google-spacing * .5;
+ }
+}
+
+.k-card__state {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    display: block;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: $base-radius;
+    border: 1px solid calc-color(fade, $color-base, 15);
+    pointer-events: none;
+    z-index: $z-fold - 1;
+@include transition(all, .16s);
+
+.k-card--loading & {
+@include transition;
+    pointer-events: auto;
+    cursor: progress;
+    background-size: $google-spacing * 2 $google-spacing * 2;
+    background-image: linear-gradient(-45deg,
+    $stripColor 25%,
+    transparent 25%,
+    transparent 50%,
+    $stripColor 50%,
+    $stripColor 75%,
+    transparent 75%,
+    transparent
+    );
+    animation: striped-lines .5s linear infinite;
+}
+.k-card--selected & {
+    border-color: $color-purple;
+    box-shadow: -$google-spacing 0 0 $color-purple;
+}
+
+.k-card--highlight-collaboration & {
+    border-color: transparent;
+}
+}
+
+@keyframes striped-lines {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: $google-spacing * 4 $google-spacing * 2
+    }
+}
