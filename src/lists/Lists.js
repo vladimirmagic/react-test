@@ -1,18 +1,18 @@
 import './Lists.scss';
 import List from "../list/List";
 
-function Lists({listNumber}) {
-    const getLists = function(count){
+function Lists({listNumber, cardNumber}) {
+    const getLists = function(){
         let lists = [];
-        for(let i=0; i<count ; i++ ){
-            lists.push(<List key={i}/>)
+        for(let i=0; i<listNumber ; i++ ){
+            lists.push(<List key={i} cardNumber={cardNumber}/>)
         }
         return lists;
     }
   return (
       <div className="lists-container" >
         <div className="list-container">
-            {getLists(listNumber)}
+            {getLists()}
         </div>
       </div>
   );

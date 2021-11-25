@@ -2,9 +2,9 @@ import './List.scss';
 import Card from "../card/Card";
 
 function List({cardNumber}) {
-  const getCards = function(count){
+  const getCards = function(){
     let cards = [];
-    for(let i=0; i<count ; i++ ){
+    for(let i=0; i<cardNumber ; i++ ){
       cards.push(<Card key={i}/>)
     }
     return cards;
@@ -71,7 +71,7 @@ function List({cardNumber}) {
         </header>
         <div className="list-cards" data-id="5218064539582464">
 
-              {getCards(cardNumber)}
+              {getCards()}
 
         </div>
       </section>
